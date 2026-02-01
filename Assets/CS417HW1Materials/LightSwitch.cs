@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LightSwitch : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class LightSwitch : MonoBehaviour
     {
         light = GetComponent<Light>();
 
-        if (action) // todo: fix this
+        action.action.Enable();
+        action.action.performed += (ctx) =>
         {
-            light.color = new Color(255, 0, 0);
-        }
+            light.color = new Color(light.color.b, light.color.r, light.color.g);
+        };
     }
 
     // Update is called once per frame
